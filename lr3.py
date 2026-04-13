@@ -137,4 +137,38 @@ tfame2 = pd.DataFrame(table2, columns = (['Y', 'C_ost_lst_2', 'Am_lst_2']))
 print(tfame)
 print(tfame2)
 
-удаляю контейнер визуализации для пункта 3 общей части лр3
+#Контейнер визуализации
+import numpy as np
+import matplotlib.pyplot as plt
+plt.plot(tfame['Y'], tfame['C_ost_lst'], label = 'Am')
+plt.savefig('chart1.png') #диаграмма остаточной стоимости (линейный способ)
+plt.figure()
+plt.plot(tfame2['Y'], tfame2['C_ost_lst_2'], label = 'Am_2')
+plt.savefig('chart2.png') #диаграмма остаточной стоимости (уменьшаемый остаток)
+vals = Am_lst
+labels = [str(x) for x in range(1, 9)]
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1) #для круговых диаграмм #Что это значит? (Ответ: explode - это список, который определяет, насколько каждый сектор будет "выдвинут" от центра круга. Значения в списке explode указывают, насколько каждый сектор будет смещен относительно центра.)
+flig, ax = plt.subplots()
+ax.pie(vals, labels = labels, autopct = '%1.1f%%', shadow=True, explode = explode, wedgeprops = {'lw':1, 'ls': '--', 'edgecolor': 'k'}, rotatelabels = True)
+ax.axis('equal')
+plt.savefig('chart3.png') #распределение амортизации по годам (линейный способ)
+vals = Am_lst_2
+labels = [str(x) for x in range(1, 9)]
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+flig, ax = plt.subplots()
+ax.pie(vals, labels = labels, autopct = '%1.1f%%', shadow=True, explode = explode, wedgeprops = {'lw':1, 'ls': '--', 'edgecolor': 'k'}, rotatelabels = True)
+ax.axis('equal')
+plt.savefig('chart4.png') #распределение амортизации по годам (уменьшаемый остаток)
+
+table1_am = list(zip(Y, Am_lst))
+table2_am = list(zip(Y, Am_lst_2))
+tfame_am = pd.DataFrame(table1_am, columns = ['Y', 'Am_lst'])
+tfame2_am = pd.DataFrame(table2_am, columns = ['Y', 'Am_lst_2'])
+plt.figure()
+plt.bar(tfame_am['Y'], tfame_am['Am_lst']) #создание столбчатой диаграммы
+plt.savefig('chart5.png') #амортизация по годам (линейный способ)
+plt.figure()
+plt.bar(tfame_am['Y'], tfame2_am['Am_lst_2'])
+plt.savefig('chart6.png') #амортизация по годам (уменьшаемый остаток)
+plt.figure()
+# Оценка ответов на вопросы - 5 баллов
