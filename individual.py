@@ -105,7 +105,30 @@ schemas = [
           </xs:sequence>
            </xs:complexType>
            </xs:element>
-           </xs:schema>''']
+           </xs:schema>''',
+  etalon, etalon, etalon, etalon, etalon, etalon, etalon, etalon, etalon, etalon, etalon, '''<<xml version="1.0"?>
+  <xs:schema>
+    <xs:element name="Laboratory0rder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PatientID" type="xs:string"/>
+            <xs:element name="TestCode" type="xs:string"/>
+            <xs:element name="TestDate" type="xs:date"/>
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            </xs:schema>''', '''<?xml version="2.0"?>
+            <xs:schema>
+            <xs:element name="LaboratoryOrder">
+            <xs:complexType>
+            <xs:sequence>
+            <xs:element name="PatientID" type="xs:string"/>
+            <xs:element name="TestCode" type="xs:string"/>
+            <xs:element name="TestDate" type="xs:date"/>
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+            </xs:schema>''']
 
 Y = []
 hash_list = []
@@ -139,12 +162,12 @@ bad = res_list.count("Схема нарушена!")
 plt.figure()
 plt.pie([ok, bad], labels=["Целостные схемы", "Нарушенные схемы"], autopct="%1.1f%%")
 plt.title("Результаты проверки")
-plt.savefig("chartpie_ind.png")
+plt.savefig("chartpie_ind2.png")
 
 plt.figure()
 plt.bar(["Целостные схемы", "Нарушенные схемы"], [ok, bad]) 
 plt.title("Сравнение")
-plt.savefig("chartbar_ind.png")
+plt.savefig("chartbar_ind2.png")
 plt.close()
 
 plt.figure()
@@ -158,5 +181,5 @@ plt.plot(Y, vals)
 plt.xlabel("Номер проверки")
 plt.ylabel("1 - целостна, 0 - нарушена")
 plt.title("Динамика проверок")
-plt.savefig("chartline_ind.png")
+plt.savefig("chartline_ind2.png")
 plt.close()
