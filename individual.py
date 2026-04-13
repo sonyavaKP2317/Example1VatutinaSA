@@ -158,14 +158,15 @@ print(tfame.to_string(max_colwidth=50))
 #3. Контейнер визуализации
 ok = res_list.count("Схема целостна")
 bad = res_list.count("Схема нарушена!")
+total = ok + bad
 
 plt.figure()
-plt.pie([ok, bad], labels=["Целостные схемы", "Нарушенные схемы"], autopct="%1.1f%%")
+plt.pie([ok, bad], labels=[f"Целостные схемы ({ok})", f"Нарушенные схемы ({bad})"], autopct="%1.1f%%")
 plt.title("Результаты проверки (измененные)")
 plt.savefig("chartpie_ind.png")
 
 plt.figure()
-plt.bar(["Целостные схемы", "Нарушенные схемы"], [ok, bad]) 
+plt.bar([f"Целостные схемы ({ok})", f"Нарушенные схемы ({bad})"], [ok, bad]) 
 plt.title("Сравнение (измененное)")
 plt.savefig("chartbar_ind.png")
 plt.close()
@@ -179,7 +180,7 @@ for x in res_list:
     vals.append(0)
 plt.plot(Y, vals)
 plt.xlabel("Номер проверки")
-plt.ylabel("1 - целостна, 0 - нарушена")
+plt.ylabel(f"1 - целостна ({ok}), 0 - нарушена({bad})")
 plt.title("Динамика проверок (измененная)")
 plt.savefig("chartline_ind.png")
 plt.close()
