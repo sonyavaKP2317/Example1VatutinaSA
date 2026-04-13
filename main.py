@@ -107,32 +107,32 @@
 # plt.figure()
 
 # # ИНДИВИДУАЛЬНАЯ ЧАСТЬ
-# ИЗМЕНЕНИЕ КОДА ДЛЯ ЧАСТИ 7 ОБЩЕГО ЗАДАНИЯ ЛР3 (2 вариант)
+# ИЗМЕНЕНИЕ КОДА ДЛЯ ЧАСТИ 7 ОБЩЕГО ЗАДАНИЯ ЛР3 (7 вариант)
 # # Контейнер расчета
 from sympy import *
 
 k, T, C, L = symbols("k C T L")
 # 1 способ - линейный способ
-C_ost = 50000
+C_ost = 70000
 Am_lst = []
 C_ost_lst = []
-for i in range(9):
+for i in range(8):
     Am = (C - L) / T
-    C_ost -= Am.subs({C: 50000, T: 9, L: 0})
-    Am_lst.append(round(Am.subs({C: 50000, T: 9, L: 0}), 2))
+    C_ost -= Am.subs({C: 70000, T: 8, L: 0})
+    Am_lst.append(round(Am.subs({C: 70000, T: 8, L: 0}), 2))
     C_ost_lst.append(round(C_ost, 2))
 print("Am_lst:", Am_lst)
 print("C_ost_lst:", C_ost_lst)
 
 # 2 способ - уменьшаемый остаток
 Aj = 0
-C_ost = 50000
+C_ost = 70000
 Am_lst_2 = []
 C_ost_lst_2 = []
-for i in range(9):
+for i in range(8):
     Am = k * 1 / T * (C - Aj)
-    C_ost -= Am.subs({C: 50000, T: 9, k: 2})
-    Am_lst_2.append(round(Am.subs({C: 50000, T: 9, k: 2}), 2))
+    C_ost -= Am.subs({C: 70000, T: 8, k: 2})
+    Am_lst_2.append(round(Am.subs({C: 70000, T: 8, k: 2}), 2))
     Aj += Am
     C_ost_lst_2.append(round(C_ost, 2))
 print("Am_lst_2:", Am_lst_2)
@@ -142,7 +142,7 @@ print("C_ost_lst_2:", C_ost_lst_2)
 import pandas as pd
 from pandas.core.internals.managers import ensure_np_dtype
 
-Y = range(1, 10)
+Y = range(1, 9)
 table1 = list(zip(Y, C_ost_lst, Am_lst))
 table2 = list(zip(Y, C_ost_lst_2, Am_lst_2))
 tfame = pd.DataFrame(table1, columns=(["Y", "C_ost_lst", "Am_lst"]))
@@ -162,8 +162,8 @@ plt.plot(tfame2["Y"], tfame2["C_ost_lst_2"], label="Am_2")
 plt.savefig("chart8.png")
 
 vals = Am_lst
-labels = [str(x) for x in range(1, 10)]
-explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+labels = [str(x) for x in range(1, 9)]
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
 flig, ax = plt.subplots()
 ax.pie(
     vals,
@@ -178,8 +178,8 @@ ax.axis("equal")
 plt.savefig("chart9.png")
 
 vals = Am_lst_2
-labels = [str(x) for x in range(1, 10)]
-explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+labels = [str(x) for x in range(1, 9)]
+explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
 fig, ax = plt.subplots()
 ax.pie(vals, labels=labels, autopct='%1.1f%%', shadow=True, explode=explode,  wedgeprops={'lw':1, 'ls':'-', 'edgecolor':'k'}, rotatelabels = True )
 ax.axis('equal')
